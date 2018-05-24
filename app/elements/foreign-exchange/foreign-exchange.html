@@ -1,0 +1,183 @@
+<dom-module id="foreign-exchange">
+  <template is="dom-bind">
+    <style include="cells-grid-template-styles"></style>
+    <style>
+      :host {
+        display: block;
+        padding: 1em 0;
+        width: 60%;
+        margin: auto auto 4rem;
+      }
+
+      cells-select {
+        background-color: #DDDDDD;
+        margin-bottom: 2em;
+      }
+
+      #select-exchange {
+        height: 200px;
+      }
+    </style>
+
+    <iron-icon icon="account"></iron-icon>
+    <div id="select-exchange" class="cgt">
+      <div class="cgt-col-xs-10 cgt-col-sm-10 cgt-col-md-4 cgt-col-lg-6">
+        <cells-select
+          id="currencyFrom"
+          options="[[optionsFrom]]"
+          label="Origin currency"
+          right-icon="coronita:unfold"
+          placeholder="Select a currency">
+        </cells-select>
+      </div>
+      <div class="cgt-col-xs-10 cgt-col-sm-10 cgt-col-md-4 cgt-col-lg-6">
+        <cells-select
+          id="currencyTo"
+          options="[[optionsTo]]"
+          label="Destination currency" right-icon="coronita:unfold" placeholder="Select a currency">
+        </cells-select>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    class ForeignExchange extends Polymer.Element {
+      static get is() {
+        return 'foreign-exchange';
+      }
+
+      static get properties() {
+
+        var optionsFrom = [
+          { 'idx': '0',  'title': 'EUR', 'description': 'Euro',                  'icon': 'coronita:currencyexchange' },
+          { 'idx': '1',  'title': 'USD', 'description': 'Dólar estadounidense',  'icon': 'coronita:currencyexchange' },
+          { 'idx': '2',  'title': 'AUD', 'description': 'Dólar australiano',     'icon': 'coronita:currencyexchange' },
+          { 'idx': '3',  'title': 'BGN', 'description': 'Leva búlgara',          'icon': 'coronita:currencyexchange' },
+          { 'idx': '4',  'title': 'BRL', 'description': 'Real brasileño',        'icon': 'coronita:currencyexchange' },
+          { 'idx': '5',  'title': 'CAD', 'description': 'Dólar canadiense',      'icon': 'coronita:currencyexchange' },
+          { 'idx': '6',  'title': 'CHF', 'description': 'Franco suizo',          'icon': 'coronita:currencyexchange' },
+          { 'idx': '7',  'title': 'CNY', 'description': 'Yuan renminbi chino',   'icon': 'coronita:currencyexchange' },
+          { 'idx': '8',  'title': 'CZK', 'description': 'Corona checa',          'icon': 'coronita:currencyexchange' },
+          { 'idx': '9',  'title': 'DKK', 'description': 'Corona danesa',         'icon': 'coronita:currencyexchange' },
+          { 'idx': '10', 'title': 'GBP', 'description': 'Libra esterlina',       'icon': 'coronita:currencyexchange' },
+          { 'idx': '11', 'title': 'HKD', 'description': 'Dólar de Hong Kong',    'icon': 'coronita:currencyexchange' },
+          { 'idx': '12', 'title': 'HRK', 'description': 'Kuna croata',           'icon': 'coronita:currencyexchange' },
+          { 'idx': '13', 'title': 'HUF', 'description': 'Florín húngaro',        'icon': 'coronita:currencyexchange' },
+          { 'idx': '14', 'title': 'IDR', 'description': 'Rupia indonesia',       'icon': 'coronita:currencyexchange' },
+          { 'idx': '15', 'title': 'ILS', 'description': 'Shequel israeli',       'icon': 'coronita:currencyexchange' },
+          { 'idx': '16', 'title': 'INR', 'description': 'Rupia india',           'icon': 'coronita:currencyexchange' },
+          { 'idx': '17', 'title': 'ISK', 'description': 'Corona islándica',      'icon': 'coronita:currencyexchange' },
+          { 'idx': '18', 'title': 'JPY', 'description': 'Yen japonés',           'icon': 'coronita:currencyexchange' },
+          { 'idx': '19', 'title': 'KRW', 'description': 'Won surcoreano',        'icon': 'coronita:currencyexchange' },
+          { 'idx': '20', 'title': 'MXN', 'description': 'Peso mexicano',         'icon': 'coronita:currencyexchange' },
+          { 'idx': '21', 'title': 'MYR', 'description': 'Ringgit malasio',       'icon': 'coronita:currencyexchange' },
+          { 'idx': '22', 'title': 'NOK', 'description': 'Corona noruega',        'icon': 'coronita:currencyexchange' },
+          { 'idx': '23', 'title': 'NZD', 'description': 'Dólar neozelandés',     'icon': 'coronita:currencyexchange' },
+          { 'idx': '24', 'title': 'PHP', 'description': 'Piso filipino',         'icon': 'coronita:currencyexchange' },
+          { 'idx': '25', 'title': 'PLN', 'description': 'Zloty polaco',          'icon': 'coronita:currencyexchange' },
+          { 'idx': '26', 'title': 'RON', 'description': 'Leu rumano',            'icon': 'coronita:currencyexchange' },
+          { 'idx': '27', 'title': 'RUB', 'description': 'Rublo ruso',            'icon': 'coronita:currencyexchange' },
+          { 'idx': '28', 'title': 'SEK', 'description': 'Corona sueca',          'icon': 'coronita:currencyexchange' },
+          { 'idx': '29', 'title': 'SGD', 'description': 'Dólar singapurense',    'icon': 'coronita:currencyexchange' },
+          { 'idx': '30', 'title': 'THB', 'description': 'Baht tailandés',        'icon': 'coronita:currencyexchange' },
+          { 'idx': '31', 'title': 'TRY', 'description': 'Lira turca',            'icon': 'coronita:currencyexchange' },
+          { 'idx': '32', 'title': 'ZAR', 'description': 'Rand sudafricano',      'icon': 'coronita:currencyexchange' }
+        ];
+
+        var optionsTo = [
+          { 'idx': '0',  'title': 'EUR', 'description': 'Euro',                  'icon': 'coronita:currencyexchange' },
+          { 'idx': '1',  'title': 'USD', 'description': 'Dólar estadounidense',  'icon': 'coronita:currencyexchange' },
+          { 'idx': '2',  'title': 'AUD', 'description': 'Dólar australiano',     'icon': 'coronita:currencyexchange' },
+          { 'idx': '3',  'title': 'BGN', 'description': 'Leva búlgara',          'icon': 'coronita:currencyexchange' },
+          { 'idx': '4',  'title': 'BRL', 'description': 'Real brasileño',        'icon': 'coronita:currencyexchange' },
+          { 'idx': '5',  'title': 'CAD', 'description': 'Dólar canadiense',      'icon': 'coronita:currencyexchange' },
+          { 'idx': '6',  'title': 'CHF', 'description': 'Franco suizo',          'icon': 'coronita:currencyexchange' },
+          { 'idx': '7',  'title': 'CNY', 'description': 'Yuan renminbi chino',   'icon': 'coronita:currencyexchange' },
+          { 'idx': '8',  'title': 'CZK', 'description': 'Corona checa',          'icon': 'coronita:currencyexchange' },
+          { 'idx': '9',  'title': 'DKK', 'description': 'Corona danesa',         'icon': 'coronita:currencyexchange' },
+          { 'idx': '10', 'title': 'GBP', 'description': 'Libra esterlina',       'icon': 'coronita:currencyexchange' },
+          { 'idx': '11', 'title': 'HKD', 'description': 'Dólar de Hong Kong',    'icon': 'coronita:currencyexchange' },
+          { 'idx': '12', 'title': 'HRK', 'description': 'Kuna croata',           'icon': 'coronita:currencyexchange' },
+          { 'idx': '13', 'title': 'HUF', 'description': 'Florín húngaro',        'icon': 'coronita:currencyexchange' },
+          { 'idx': '14', 'title': 'IDR', 'description': 'Rupia indonesia',       'icon': 'coronita:currencyexchange' },
+          { 'idx': '15', 'title': 'ILS', 'description': 'Shequel israeli',       'icon': 'coronita:currencyexchange' },
+          { 'idx': '16', 'title': 'INR', 'description': 'Rupia india',           'icon': 'coronita:currencyexchange' },
+          { 'idx': '17', 'title': 'ISK', 'description': 'Corona islándica',      'icon': 'coronita:currencyexchange' },
+          { 'idx': '18', 'title': 'JPY', 'description': 'Yen japonés',           'icon': 'coronita:currencyexchange' },
+          { 'idx': '19', 'title': 'KRW', 'description': 'Won surcoreano',        'icon': 'coronita:currencyexchange' },
+          { 'idx': '20', 'title': 'MXN', 'description': 'Peso mexicano',         'icon': 'coronita:currencyexchange' },
+          { 'idx': '21', 'title': 'MYR', 'description': 'Ringgit malasio',       'icon': 'coronita:currencyexchange' },
+          { 'idx': '22', 'title': 'NOK', 'description': 'Corona noruega',        'icon': 'coronita:currencyexchange' },
+          { 'idx': '23', 'title': 'NZD', 'description': 'Dólar neozelandés',     'icon': 'coronita:currencyexchange' },
+          { 'idx': '24', 'title': 'PHP', 'description': 'Piso filipino',         'icon': 'coronita:currencyexchange' },
+          { 'idx': '25', 'title': 'PLN', 'description': 'Zloty polaco',          'icon': 'coronita:currencyexchange' },
+          { 'idx': '26', 'title': 'RON', 'description': 'Leu rumano',            'icon': 'coronita:currencyexchange' },
+          { 'idx': '27', 'title': 'RUB', 'description': 'Rublo ruso',            'icon': 'coronita:currencyexchange' },
+          { 'idx': '28', 'title': 'SEK', 'description': 'Corona sueca',          'icon': 'coronita:currencyexchange' },
+          { 'idx': '29', 'title': 'SGD', 'description': 'Dólar singapurense',    'icon': 'coronita:currencyexchange' },
+          { 'idx': '30', 'title': 'THB', 'description': 'Baht tailandés',        'icon': 'coronita:currencyexchange' },
+          { 'idx': '31', 'title': 'TRY', 'description': 'Lira turca',            'icon': 'coronita:currencyexchange' },
+          { 'idx': '32', 'title': 'ZAR', 'description': 'Rand sudafricano',      'icon': 'coronita:currencyexchange' }
+        ];
+
+        return {
+          optionsFrom: {
+            type: Object,
+            value: optionsFrom,
+            notify: true
+          },
+          optionsTo: {
+            type: Object,
+            value: optionsTo,
+            notify: true
+          },
+          currencyFromSelected: {
+            type: String,
+            notify: true
+          },
+          currencyToSelected: {
+            type: String,
+            notify: true
+          }
+        };
+      }
+
+      ready() {
+        super.ready();
+        this.$.currencyFrom.resetSelection();
+        this.$.currencyTo.resetSelection();
+
+        this.$.currencyFrom.selectOption(1);
+        this.$.currencyTo.selectOption(0);
+
+        this.currencyFromSelected = 'USD';
+        this.currencyToSelected = 'EUR';
+
+        // Creamos los Oyentes y los métodos callbacks que se lanzarán al producirse el evento
+        this.$.currencyFrom.addEventListener('select-item-selected', this.currencyFromChanged.bind(this));
+        this.$.currencyTo.addEventListener('select-item-selected', this.currencyToChanged.bind(this));
+      }
+
+      // Método callback que se lanza al producirse el evento de cambio en el desplegable currencyFrom
+      currencyFromChanged(evt) {
+        let data = evt.detail;
+        this.currencyFromSelected = data.title;
+
+        // Lanzamos un nuevo evento para que el componente forex-dm lo capture
+        this.dispatchEvent(new CustomEvent('currency-from-changed-event', { detail:data }));
+      }
+
+      // Método callback que se lanza al producirse el evento de cambio en el desplegable currencyFrom
+      currencyToChanged(evt) {
+        let data = evt.detail;
+        this.currencyToSelected = data.title;
+
+        // Lanzamos un nuevo evento para que el componente forex-dm lo capture
+        this.dispatchEvent(new CustomEvent('currency-to-changed-event', { detail:data }));
+      }
+
+    }
+    customElements.define(ForeignExchange.is, ForeignExchange);
+  </script>
+</dom-module>
+

@@ -1,0 +1,25 @@
+{
+  "name": "forex",
+  "version": "0.1.0",
+  "dependencies": {
+    "cells-polymer-bridge": "^3.0.0",
+    "cells-template-zones": "^10.0.3",
+    "cells-component-app-header": "^10.0.3",
+    "cells-select": "^10.0.5",
+    "coronita-icons": "^10.3.6",
+    "cells-coronita-theme": "^10.0.0",
+    "cells-grid-template": "^10.0.1",
+    "cells-generic-dp": "^10.0.5",
+    "banking-icons": "^10.0.2",
+    "cells-atom-amount": "^10.1.3",
+    "cells-amount-behavior": "^10.2.1",
+    "cells-icons": "^10.0.2",
+    "cells-navigation-bar": "^10.2.1"
+  },
+  "resolutions": {
+    "polymer": "^2.0.0",
+    "webcomponentsjs": "^v1.0.19",
+    "cells-i18n-behavior": "^10.0.0",
+    "cells-amount-behavior": "^10.0.0"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "forex",
+  "version": "0.1.0",
+  "keywords": [
+    "cells-app"
+  ],
+  "dependencies": {
+    "cells-app-template": "^3.0.2"
+  },
+  "devDependencies": {}
+}

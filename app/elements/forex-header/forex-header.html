@@ -1,0 +1,92 @@
+<dom-module id="forex-header">
+
+  <template>
+    <style>
+      :host {
+        display: block;
+        background-color: var(--cells-component-app-header-bg-color, var(--bbva-navy, #072146));
+        height: 70px;
+      }
+
+      h1 {
+        font-family: Lato;
+        font-size: 1.3rem;
+        font-weight: 300;
+        letter-spacing: 2px;
+        color: #4a4a4a;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* height: 80px; */
+        text-transform: uppercase;
+      }
+
+      h3 {
+        font-family: Lato;
+        font-size: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      h1 strong {
+        letter-spacing: normal;
+        font-weight: 900;
+        color: #224fbd;
+        margin-right: 0.8rem;
+      }
+    </style>
+
+    <cells-component-app-header
+      text=".- Foreign Exchange -."
+      icon-left="[[menu]]"
+    >
+    </cells-component-app-header>
+
+    <cells-navigation-bar id="cells-navigation-bar" selected="0" items$="[[navItems]]"></cells-navigation-bar>
+  </template>
+
+  <script>
+
+
+
+    // Define the element's API using an ES2015 class
+    class ForexHeader extends Polymer.Element {
+
+      static get is() { return 'forex-header'; }
+
+      // Declare properties for the element's public API
+      static get properties() {
+
+        var navItems = [
+          {"label": "cells-navigation-bar-home", "icon": "coronita:home",  "id": "home"},
+          {"label": "cells-navigation-bar-pay",  "icon":"coronita:wallet", "id": "payments"},
+          {"label": "cells-navigation-bar-notifications", "icon":"coronita:alarm", "id":"notifications", "notificationIndex":0}
+        ];
+        console.log(navItems);
+
+        return {
+          navItems: {
+            type: Object,
+            notify: true
+          }
+        }
+      }
+
+      ready() {
+        super.ready();
+      }
+
+      calculateExchangeByRate(data) {
+        console.log('Ha cambiado alguna entrada. Calculamos el nuevo cambio!');
+
+      }
+    }
+
+    customElements.define(ForexHeader.is, ForexHeader);
+
+
+  </script>
+
+</dom-module>

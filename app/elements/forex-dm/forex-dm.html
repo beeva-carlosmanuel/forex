@@ -1,0 +1,91 @@
+
+<link rel="import" href="../../components/cells-generic-dp/cells-generic-dp.html">
+
+<dom-module id="forex-dm">
+
+  <template>
+    <cells-generic-dp
+      id="forexDP"
+      host="https://any-api.com:3010"
+      path="https://api.fixer.io/latest?base=EUR&symbols=USD"
+      method="GET">
+    </cells-generic-dp>
+  </template>
+
+  <script>
+    // Define the element's API using an ES2015 class
+    class ForexDM extends Polymer.Element {
+      static get is() { return 'forex-dm'; }
+      // Declare properties for the element's public API
+      static get properties() {
+        return {
+          currencyFromSelected: {
+            type: String,
+            notify: true
+          },
+          currencyToSelected: {
+            type: String,
+            notify: true
+          }
+        };
+      }
+
+      ready() {
+        super.ready();
+        this.addEventListener('request-success', this._onRequestOk);
+        this.addEventListener('request-error', this._onRequestError);
+      }
+
+      getCurrent() {
+        this.currencyFromSelected = 'USD';
+        this.currencyToSelected = 'EUR';
+        var path = 'https://api.fixer.io/latest?base='+ this.currencyFromSelected + '&symbols=' + this.currencyToSelected;
+        this.$.forexDP.path = path;
+        this.$.forexDP.generateRequest();
+        this.dispatchEvent(new CustomEvent('forex-request-start'));
+      }
+
+      // Callback del evento currency-from-changed-event lanzado en foreign-exchange al cambiar el select currencyFrom
+      currencyFromSelectedMethod(data) {
+        this.currencyFromSelected = data.title;
+        this._getExchange();
+      }
+
+      // Callback del evento currency-to-changed-event lanzado en foreign-exchange al cambiar el select currencyTo
+      currencyToSelectedMethod(data) {
+        this.currencyToSelected = data.title;
+        this._getExchange();
+      }
+
+      _getExchange() {
+        if (typeof this.currencyFromSelected == 'undefined') {
+          this.currencyFromSelected = 'USD';
+        }
+        if (typeof this.currencyToSelected == 'undefined') {
+          this.currencyToSelected = 'EUR';
+        }
+        var path = 'https://api.fixer.io/latest?base=' + this.currencyFromSelected + '&symbols=' + this.currencyToSelected;
+        this.$.forexDP.path = path
+        this.$.forexDP.generateRequest();
+        this.dispatchEvent(new CustomEvent('forex-request-start'));
+      }
+
+      _onRequestOk(evt) {
+        let data = evt.detail;
+        var rate = 0;
+        for (var divisa in data.rates) {
+          rate = data.rates[divisa];
+        }
+        // Este evento lo captura el componente exchange-result y ejecuta calculateExchangeByRate
+        this.dispatchEvent(new CustomEvent('forex-request-ok', {detail:data}));
+      }
+
+      _onRequestError(err) {
+        this.dispatchEvent(new CustomEvent('forex-request-error'));
+      }
+    }
+    // Register the custom element with the browser
+    customElements.define(ForexDM.is, ForexDM);
+  </script>
+</dom-module>
+

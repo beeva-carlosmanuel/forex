@@ -1,0 +1,18 @@
+{
+  "deployEndpoint": "",
+  "i18nPath": "locales/",
+  "componentsPath": "./components/",
+  "composerEndpoint": "",
+  "composerHeaderKey": "",
+  "composerHeaderValue": "",
+  "appId": "",
+  "debug": true,
+  "mocks": true,
+  "coreCache": true,
+  "routerLog": false,
+  "cordovaScript" : "cordova.js",
+  "prplLevel": 1,
+  "initialBundle": ["home.json"],
+  "transpile": true,
+  "transpileExclude": [ "cells-rxjs", "webcomponentsjs", "moment","d3", "bgadp*" ]
+}

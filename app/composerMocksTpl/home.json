@@ -1,0 +1,103 @@
+{
+  "template": {
+    "familyPath": "cells-template-zones",
+    "tag": "cells-template-zones",
+    "properties": {
+      "disableEdgeSwipe": true,
+      "headerFixed": true,
+      "hasFooter": true
+    }
+  },
+  "components": [
+    {
+      "zone": "app__header",
+      "tag": "cells-component-app-header",
+      "properties": {
+        "text": ".- Foreign Exchange -."
+      }
+    },
+    {
+      "zone": "app__main",
+      "type": "UI",
+      "familyPath": "../elements/my-amount",
+      "tag": "my-amount",
+      "properties": {
+        "cellsConnections": {
+          "in": {},
+          "out": {
+            "my-amount-channel": {
+              "bind": "amount-changed"
+            }
+          }
+        }
+      }
+    },
+    {
+      "zone": "app__main",
+      "type": "UI",
+      "familyPath": "../elements/exchange-result",
+      "tag": "exchange-result",
+      "properties": {
+        "cellsConnections": {
+          "in": {
+            "my-amount-channel": {
+              "bind": "calculateExchangeByRate"
+            },
+            "ch_request_ok" : {
+              "bind": "calculateExchangeByRate"
+            }
+          }
+        }
+      }
+    },
+    {
+      "zone": "app__main",
+      "type": "UI",
+      "familyPath": "../elements/foreign-exchange",
+      "tag": "foreign-exchange",
+      "properties": {
+        "cellsConnections": {
+          "in": {
+
+          },
+          "out": {
+            "currency-from-channel": {
+              "bind": "currency-from-changed-event"
+            },
+            "currency-to-channel": {
+              "bind": "currency-to-changed-event"
+            }
+          }
+        }
+      }
+    },
+    {
+      "zone": "app__main",
+      "familyPath": "../elements/forex-dm",
+      "tag": "forex-dm",
+      "properties": {
+        "cellsConnections": {
+          "in": {
+            "__bridge_page_home": {
+              "bind": "getCurrent"
+            },
+            "currency-from-channel": {
+              "bind": "currencyFromSelectedMethod"
+            },
+            "currency-to-channel": {
+              "bind": "currencyToSelectedMethod"
+            }
+          },
+          "out": {
+            "ch_request_start" : {
+              "bind": "forex-request-start"
+            },
+            "ch_request_ok" : {
+              "bind": "forex-request-ok"
+            }
+          }
+        }
+      }
+    }
+  ]
+}
